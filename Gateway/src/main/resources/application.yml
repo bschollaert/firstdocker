@@ -1,0 +1,17 @@
+server:
+  port: 8888
+spring:
+  jmx:
+    enabled: false
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: member-service
+        uri: lb://member-service
+        predicates:
+        - Path=/member/**
