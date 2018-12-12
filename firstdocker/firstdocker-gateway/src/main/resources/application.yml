@@ -1,0 +1,17 @@
+server:
+  port: 8888
+spring:
+  jmx:
+    enabled: false
+  application:
+    name: firstdocker-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: firstdocker-member-service
+        uri: lb://firstdocker-member-service
+        predicates:
+        - Path=/member/**

@@ -1,0 +1,8 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: firstdocker-member-service
+  cloud:
+    config:
+      uri: lb://firstdocker-member-service
