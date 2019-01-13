@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: firstdocker-config
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        prefix: config
+        jdbc:
+          order: 1 
+          sql: SELECT ky, val FROM config where app=? and profile= ? and label=?
