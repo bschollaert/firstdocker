@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://firstdocker-postgres:5432/firstdocker
+    username: userdocker
+    password: mypwd

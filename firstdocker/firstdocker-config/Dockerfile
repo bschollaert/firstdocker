@@ -2,12 +2,12 @@ FROM openjdk:8-jdk-alpine
 MAINTAINER Baudouin Schollaert
 RUN mkdir /data
 WORKDIR /data
-ADD target/firstdocker-eureka.jar /data/firstdocker-eureka.jar
+ADD target/firstdocker-config.jar /data/firstdocker-config.jar
 
-ENV springprofiles="" \
+ENV springprofiles="jdbc,docker" \
     MAXRAMIFNOLIMIT=4096
 ENTRYPOINT MAXRAM=$(expr `cat /sys/fs/cgroup/memory/memory.limit_in_bytes` / 1024 / 1024) && \
            MAXRAM=$(($MAXRAM>$MAXRAMIFNOLIMIT?$MAXRAMIFNOLIMIT:$MAXRAM))m && \
            echo "MaxRam: $MAXRAM" && \
-           java -XX:MaxRAM=$MAXRAM -Djava.security.egd=file:/dev/./urandom -jar -Dspring.profiles.active="$springprofiles" firstdocker-eureka.jar
-EXPOSE 8761
+           java -XX:MaxRAM=$MAXRAM -Djava.security.egd=file:/dev/./urandom -jar -Dspring.profiles.active="$springprofiles" firstdocker-config.jar
+EXPOSE 8060
